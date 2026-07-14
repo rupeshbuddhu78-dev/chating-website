@@ -1,0 +1,158 @@
+<%
+  const s = typeof seo !== 'undefined' && seo ? seo : {};
+  const base = s.baseUrl || 'https://livegirlschat.online';
+  const url  = s.url || (base + (typeof currentPath !== 'undefined' ? currentPath : '/'));
+  const ttl  = s.title || (typeof title !== 'undefined' ? title : 'QuickTalk');
+  const desc = s.description || 'QuickTalk — Free anonymous random text, voice and video chat with strangers worldwide.';
+  const img  = s.image || (base + '/images/og-image.png');
+  const kws  = s.keywords || 'random video chat, omegle alternative, anonymous chat, talk to strangers, free video chat';
+  const siteName = s.siteName || 'QuickTalk';
+%>
+<title><%= ttl %></title>
+<meta name="description" content="<%= desc %>" />
+<meta name="keywords" content="<%= kws %>" />
+<meta name="author" content="QuickTalk" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />
+<meta name="rating" content="general" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="1 days" />
+<meta name="distribution" content="global" />
+<meta name="theme-color" content="#0b0f17" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="QuickTalk" />
+<meta name="application-name" content="QuickTalk" />
+<meta name="format-detection" content="telephone=no" />
+
+<link rel="canonical" href="<%= url %>" />
+<link rel="alternate" hreflang="en" href="<%= url %>" />
+<link rel="alternate" hreflang="x-default" href="<%= url %>" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/images/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="<%= siteName %>" />
+<meta property="og:title" content="<%= ttl %>" />
+<meta property="og:description" content="<%= desc %>" />
+<meta property="og:url" content="<%= url %>" />
+<meta property="og:image" content="<%= img %>" />
+<meta property="og:image:secure_url" content="<%= img %>" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="<%= ttl %>" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@quicktalk" />
+<meta name="twitter:creator" content="@quicktalk" />
+<meta name="twitter:title" content="<%= ttl %>" />
+<meta name="twitter:description" content="<%= desc %>" />
+<meta name="twitter:image" content="<%= img %>" />
+<meta name="twitter:image:alt" content="<%= ttl %>" />
+
+<!-- Preconnect / DNS-prefetch -->
+<link rel="preconnect" href="https://sdk.cashfree.com" crossorigin />
+<link rel="dns-prefetch" href="https://sdk.cashfree.com" />
+<link rel="dns-prefetch" href="https://webrtc.github.io" />
+
+<!-- JSON-LD: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "QuickTalk",
+  "url": "<%= base %>",
+  "logo": "<%= base %>/images/favicon.svg",
+  "sameAs": [
+    "https://twitter.com/quicktalk",
+    "https://www.facebook.com/quicktalk",
+    "https://www.instagram.com/quicktalk"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "support@livegirlschat.online",
+    "contactType": "customer support",
+    "availableLanguage": ["English", "Hindi"]
+  }
+}
+</script>
+
+<!-- JSON-LD: WebSite (with SearchAction) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "QuickTalk",
+  "url": "<%= base %>",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "<%= base %>/chat?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- JSON-LD: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QuickTalk",
+  "applicationCategory": "SocialNetworkingApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript, WebRTC, modern browser",
+  "url": "<%= base %>",
+  "description": "<%= desc %>",
+  "offers": [
+    { "@type": "Offer", "price": "0", "priceCurrency": "INR", "name": "Free Plan" },
+    { "@type": "Offer", "price": "10", "priceCurrency": "INR", "name": "2 Days Premium" },
+    { "@type": "Offer", "price": "20", "priceCurrency": "INR", "name": "4 Days Premium" },
+    { "@type": "Offer", "price": "30", "priceCurrency": "INR", "name": "7 Days Premium" },
+    { "@type": "Offer", "price": "99", "priceCurrency": "INR", "name": "30 Days Premium" },
+    { "@type": "Offer", "price": "599", "priceCurrency": "INR", "name": "365 Days Premium" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "ratingCount": "1284"
+  }
+}
+</script>
+
+<% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length) { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    <% breadcrumbs.forEach(function(b, i){ %>
+    { "@type": "ListItem", "position": <%= i + 1 %>, "name": "<%= b.name %>", "item": "<%= base %><%= b.path %>" }<%= i < breadcrumbs.length - 1 ? ',' : '' %>
+    <% }) %>
+  ]
+}
+</script>
+<% } %>
+
+<% if (typeof faq !== 'undefined' && faq && faq.length) { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% faq.forEach(function(f, i){ %>
+    {
+      "@type": "Question",
+      "name": <%- JSON.stringify(f.q) %>,
+      "acceptedAnswer": { "@type": "Answer", "text": <%- JSON.stringify(f.a) %> }
+    }<%= i < faq.length - 1 ? ',' : '' %>
+    <% }) %>
+  ]
+}
+</script>
+<% } %>

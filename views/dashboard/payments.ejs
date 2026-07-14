@@ -1,0 +1,20 @@
+<section class="dash">
+  <h1>Payment History</h1>
+  <table class="tbl">
+    <thead><tr><th>Order</th><th>Plan</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+    <tbody>
+      <% if (!payments.length) { %>
+        <tr><td colspan="5">No payments yet.</td></tr>
+      <% } %>
+      <% payments.forEach(p => { %>
+        <tr>
+          <td><%= p.orderId %></td>
+          <td><%= p.planCode %></td>
+          <td>₹<%= p.amount %></td>
+          <td><span class="status s-<%= p.status %>"><%= p.status %></span></td>
+          <td><%= new Date(p.createdAt).toLocaleString() %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</section>

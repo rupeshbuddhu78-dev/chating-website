@@ -1,0 +1,9 @@
+<section class="auth-wrap">
+  <form class="auth-card" method="POST" action="/admin/login">
+    <h1>Admin Login</h1>
+    <% if (error) { %><div class="err"><%= error %></div><% } %>
+    <label>Email <input type="email" name="email" required /></label>
+    <label>Password <input type="password" name="password" required /></label>
+    <button class="btn primary big">Login</button>
+  </form>
+</section>

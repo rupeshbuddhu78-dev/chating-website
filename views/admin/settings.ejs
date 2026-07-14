@@ -1,0 +1,10 @@
+<h1>Settings</h1>
+<form method="POST" action="/admin/settings" class="card form">
+  <label>Site Name <input type="text" name="siteName" value="<%= settings?.siteName || 'QuickTalk' %>" /></label>
+  <label>Support Email <input type="email" name="supportEmail" value="<%= settings?.supportEmail || '' %>" /></label>
+  <label>Max Image KB <input type="number" name="maxImageKB" value="<%= settings?.maxImageKB || 350 %>" min="50" max="2000" /></label>
+  <label class="check"><input type="checkbox" name="allowVideoForFree" <%= settings?.allowVideoForFree ? 'checked' : '' %> /> Allow video for free users</label>
+  <label class="check"><input type="checkbox" name="maintenance" <%= settings?.maintenance ? 'checked' : '' %> /> Maintenance mode</label>
+  <label>Maintenance Message <textarea name="maintenanceMsg"><%= settings?.maintenanceMsg || '' %></textarea></label>
+  <button class="btn primary">Save</button>
+</form>

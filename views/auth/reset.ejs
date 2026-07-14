@@ -1,0 +1,8 @@
+<section class="auth-wrap">
+  <form class="auth-card" method="POST" action="/auth/reset/<%= token %>">
+    <h1>Reset Password</h1>
+    <% if (error) { %><div class="err"><%= error %></div><% } %>
+    <label>New Password <input type="password" name="password" required minlength="6" /></label>
+    <button type="submit" class="btn primary big">Update Password</button>
+  </form>
+</section>

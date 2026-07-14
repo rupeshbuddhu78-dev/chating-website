@@ -1,0 +1,14 @@
+<section class="auth-wrap">
+  <form class="auth-card" method="POST" action="/auth/login">
+    <h1>Login</h1>
+    <% if (error) { %><div class="err"><%= error %></div><% } %>
+    <label>Email <input type="email" name="email" required autocomplete="email" /></label>
+    <label>Password <input type="password" name="password" required autocomplete="current-password" /></label>
+    <button type="submit" class="btn primary big">Login</button>
+    <a href="/auth/google" class="btn google">Continue with Google</a>
+    <p class="alt">
+      <a href="/auth/forgot">Forgot password?</a> ·
+      <a href="/auth/signup">Create account</a>
+    </p>
+  </form>
+</section>

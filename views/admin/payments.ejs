@@ -1,0 +1,23 @@
+<h1>Payments</h1>
+<div class="row">
+  <form method="GET" class="search">
+    <input type="text" name="q" value="<%= q %>" placeholder="Search orderId / plan" />
+    <button class="btn primary">Search</button>
+  </form>
+  <a href="/admin/payments.csv" class="btn ghost">Export CSV</a>
+</div>
+<table class="tbl">
+  <thead><tr><th>OrderId</th><th>User</th><th>Plan</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+  <tbody>
+    <% payments.forEach(p => { %>
+      <tr>
+        <td><%= p.orderId %></td>
+        <td><%= p.user?.email || '-' %></td>
+        <td><%= p.planCode %></td>
+        <td>₹<%= p.amount %></td>
+        <td><span class="status s-<%= p.status %>"><%= p.status %></span></td>
+        <td><%= new Date(p.createdAt).toLocaleString() %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

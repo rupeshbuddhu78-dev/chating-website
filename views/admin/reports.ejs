@@ -1,0 +1,20 @@
+<h1>Reports</h1>
+<table class="tbl">
+  <thead><tr><th>Reason</th><th>Reporter</th><th>Reported</th><th>Room</th><th>Status</th><th>Date</th><th>Action</th></tr></thead>
+  <tbody>
+    <% reports.forEach(r => { %>
+      <tr>
+        <td><%= r.reason %></td>
+        <td><%= r.reporter?.email || r.reporterAnon || 'anon' %></td>
+        <td><%= r.reportedUser?.email || r.reportedAnon || 'anon' %></td>
+        <td><%= r.roomId %></td>
+        <td><span class="status s-<%= r.status %>"><%= r.status %></span></td>
+        <td><%= new Date(r.createdAt).toLocaleString() %></td>
+        <td class="row">
+          <form method="POST" action="/admin/reports/<%= r._id %>"><input type="hidden" name="action" value="dismiss"/><button class="btn ghost">Dismiss</button></form>
+          <form method="POST" action="/admin/reports/<%= r._id %>"><input type="hidden" name="action" value="ban"/><button class="btn danger">Ban User</button></form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

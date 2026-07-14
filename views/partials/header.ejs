@@ -1,0 +1,18 @@
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="logo-dot"></span>
+    <span>QuickTalk</span>
+  </a>
+  <nav class="nav">
+    <a href="/chat">Chat</a>
+    <a href="/about">About</a>
+    <% if (user) { %>
+      <a href="/user/dashboard">Dashboard</a>
+      <% if (!user.isPremium) { %><a href="/user/premium" class="cta">Go Premium</a><% } %>
+      <a href="/auth/logout">Logout</a>
+    <% } else { %>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/signup" class="cta">Sign Up</a>
+    <% } %>
+  </nav>
+</header>

@@ -1,0 +1,43 @@
+<section class="dash">
+  <div class="dash-head">
+    <h1>Hi, <%= user.name %> 👋</h1>
+    <% if (user.isPremium && user.premiumExpiry && new Date(user.premiumExpiry) > new Date()) { %>
+      <span class="badge premium">Premium · until <%= new Date(user.premiumExpiry).toLocaleDateString() %></span>
+    <% } else { %>
+      <a href="/user/premium" class="btn primary">Go Premium</a>
+    <% } %>
+  </div>
+
+  <div class="dash-grid">
+    <div class="card">
+      <h3>Profile</h3>
+      <p><%= user.email %></p>
+      <p><%= user.gender || '—' %> · <%= user.country || '—' %></p>
+      <a href="/user/profile" class="btn ghost">Edit Profile</a>
+    </div>
+    <div class="card">
+      <h3>Chat</h3>
+      <p>Start a random chat right now.</p>
+      <a href="/chat" class="btn primary">Open Chat</a>
+    </div>
+    <div class="card">
+      <h3>Payments</h3>
+      <p><%= payments.length %> transactions</p>
+      <a href="/user/payments" class="btn ghost">View All</a>
+    </div>
+  </div>
+
+  <h2>Premium Plans</h2>
+  <div class="plans">
+    <% plans.forEach(p => { %>
+      <div class="plan">
+        <div class="plan-price">₹<%= p.amount %></div>
+        <div class="plan-days"><%= p.label %></div>
+        <button class="btn primary" onclick="buyPlan('<%= p.code %>')">Buy</button>
+      </div>
+    <% }); %>
+  </div>
+</section>
+
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<script src="/js/payment.js"></script>

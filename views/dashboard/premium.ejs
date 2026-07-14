@@ -1,0 +1,22 @@
+<section class="dash">
+  <h1>Go Premium</h1>
+  <p>Unlock HD video, filters, priority matching and an ad-free experience.</p>
+
+  <div class="plans big-plans">
+    <% plans.forEach(p => { %>
+      <div class="plan">
+        <div class="plan-price">₹<%= p.amount %></div>
+        <div class="plan-days"><%= p.label %></div>
+        <ul>
+          <li>HD Video Chat</li>
+          <li>Gender / Country / Language filters</li>
+          <li>Priority matching</li>
+          <li>No ads</li>
+        </ul>
+        <button class="btn primary" onclick="buyPlan('<%= p.code %>')">Buy ₹<%= p.amount %></button>
+      </div>
+    <% }); %>
+  </div>
+</section>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<script src="/js/payment.js"></script>

@@ -1,0 +1,32 @@
+<h1>Users</h1>
+<form method="GET" class="search">
+  <input type="text" name="q" value="<%= q %>" placeholder="Search email or name" />
+  <button class="btn primary">Search</button>
+</form>
+<table class="tbl">
+  <thead><tr><th>Name</th><th>Email</th><th>Premium</th><th>Banned</th><th>Created</th><th>Actions</th></tr></thead>
+  <tbody>
+    <% users.forEach(u => { %>
+      <tr>
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td><%= (u.isPremium && u.premiumExpiry && new Date(u.premiumExpiry)>new Date()) ? '✅ '+new Date(u.premiumExpiry).toLocaleDateString() : '—' %></td>
+        <td><%= u.banned ? '⛔' : '—' %></td>
+        <td><%= new Date(u.createdAt).toLocaleDateString() %></td>
+        <td class="row">
+          <% if (u.banned) { %>
+            <form method="POST" action="/admin/users/<%= u._id %>/unban"><button class="btn ghost">Unban</button></form>
+          <% } else { %>
+            <form method="POST" action="/admin/users/<%= u._id %>/ban"><button class="btn danger">Ban</button></form>
+          <% } %>
+          <form method="POST" action="/admin/users/<%= u._id %>/premium/give">
+            <input type="number" name="days" value="30" min="1" style="width:60px" />
+            <button class="btn primary">+ Premium</button>
+          </form>
+          <form method="POST" action="/admin/users/<%= u._id %>/premium/remove"><button class="btn ghost">− Premium</button></form>
+          <form method="POST" action="/admin/users/<%= u._id %>/delete" onsubmit="return confirm('Delete user?')"><button class="btn danger">Delete</button></form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

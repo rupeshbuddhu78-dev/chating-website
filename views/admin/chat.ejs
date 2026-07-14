@@ -1,0 +1,8 @@
+<h1>Live Chat Status</h1>
+<div class="stat-grid">
+  <div class="stat"><h4>Online Sockets</h4><b><%= online %></b></div>
+  <div class="stat"><h4>Waiting</h4><b><%= waiting %></b></div>
+  <div class="stat"><h4>Active Rooms</h4><b><%= rooms %></b></div>
+</div>
+<p class="muted">Auto-refresh every 5s.</p>
+<script>setTimeout(()=>location.reload(),5000)</script>

@@ -1,0 +1,141 @@
+<!-- Landing / setup -->
+<section id="landing" class="chat-landing">
+  <div class="brand">
+    <div class="logo">QT</div>
+    <h1>QuickTalk</h1>
+    <p class="tagline">Anonymous random chat — text, voice &amp; video.</p>
+  </div>
+
+  <form id="joinForm" class="card" autocomplete="off">
+    <label class="field">
+      <span>Display Name</span>
+      <input id="name" type="text" required maxlength="24" placeholder="Your name" />
+    </label>
+
+    <label class="field">
+      <span>Gender</span>
+      <select id="gender" required>
+        <option value="" disabled selected>Choose…</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Country (optional)</span>
+      <input id="country" type="text" maxlength="40" placeholder="e.g. India" />
+    </label>
+
+    <label class="field">
+      <span>Mode</span>
+      <div class="mode-toggle">
+        <label><input type="radio" name="mode" value="text" checked /> Text</label>
+        <label><input type="radio" name="mode" value="voice" /> Voice</label>
+        <label><input type="radio" name="mode" value="video" /> Video</label>
+      </div>
+    </label>
+
+    <div id="premiumFilters" class="premium-filters hidden">
+      <h4>Premium Filters</h4>
+      <label class="field">
+        <span>Match Gender</span>
+        <select id="fGender">
+          <option value="">Any</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Match Country</span>
+        <input id="fCountry" type="text" maxlength="40" placeholder="e.g. India" />
+      </label>
+      <label class="field">
+        <span>Match Language</span>
+        <input id="fLanguage" type="text" maxlength="20" placeholder="e.g. English" />
+      </label>
+    </div>
+
+    <button id="startBtn" type="submit" class="btn primary big">Start Chat</button>
+    <div class="fineprint">
+      <span id="onlineCount">…</span> online now · Be respectful. Chats are not stored.
+    </div>
+  </form>
+</section>
+
+<!-- Chat screen -->
+<section id="chat" class="chat-screen hidden">
+  <header class="topbar">
+    <div class="brand-mini"><div class="logo small">QT</div><strong>QuickTalk</strong></div>
+    <div class="status" id="status">Idle</div>
+    <div class="topbar-actions">
+      <button id="reportBtn" class="pill" title="Report">🚩</button>
+      <button id="blockBtn" class="pill" title="Block">⛔</button>
+      <button id="nextBtn" class="pill ghost">Next</button>
+      <button id="stopBtn" class="pill danger">Stop</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="videos" id="videos">
+      <div class="video-wrap remote">
+        <video id="remoteVideo" autoplay playsinline></video>
+        <span class="tag" id="remoteTag">Stranger</span>
+        <div class="quality" id="quality"></div>
+      </div>
+      <div class="video-wrap local">
+        <video id="localVideo" autoplay playsinline muted></video>
+        <span class="tag">You</span>
+      </div>
+    </div>
+
+    <aside class="chatbox">
+      <div class="messages" id="messages" aria-live="polite"></div>
+      <div class="typing" id="typing"></div>
+      <form id="msgForm" class="composer">
+        <button type="button" id="emojiBtn" class="pill" title="Emoji">😊</button>
+        <button type="button" id="imgBtn" class="pill" title="Send image">🖼️</button>
+        <input type="file" id="imgInput" accept="image/*" hidden />
+        <input id="msgInput" type="text" placeholder="Type a message…" maxlength="2000" autocomplete="off" />
+        <button type="submit" class="btn primary">Send</button>
+      </form>
+      <div id="emojiPicker" class="emoji-picker hidden"></div>
+    </aside>
+  </main>
+
+  <footer class="media-controls" id="mediaControls">
+    <button id="micBtn" class="pill" title="Mute mic">🎤 Mic</button>
+    <button id="camBtn" class="pill" title="Camera">🎥 Cam</button>
+    <button id="swapBtn" class="pill" title="Switch camera">🔄</button>
+    <button id="fsBtn" class="pill" title="Fullscreen">⛶</button>
+  </footer>
+</section>
+
+<div id="reportModal" class="modal hidden">
+  <div class="modal-card">
+    <h3>Report Stranger</h3>
+    <select id="reportReason">
+      <option value="">Reason…</option>
+      <option>Nudity / Sexual content</option>
+      <option>Harassment</option>
+      <option>Underage user</option>
+      <option>Spam / Scam</option>
+      <option>Other</option>
+    </select>
+    <textarea id="reportDetails" placeholder="Details (optional)" maxlength="1000"></textarea>
+    <div class="row">
+      <button id="reportCancel" class="btn ghost">Cancel</button>
+      <button id="reportSubmit" class="btn danger">Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.__ICE__ = <%- iceServers %>;
+  window.__USER__ = <%- JSON.stringify(typeof user !== 'undefined' && user ? {
+    id: user._id,
+    name: user.name,
+    isPremium: !!(user.isPremium && user.premiumExpiry && new Date(user.premiumExpiry) > new Date())
+  } : null) %>;
+</script>

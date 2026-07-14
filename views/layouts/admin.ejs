@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %> · QuickTalk Admin</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+  <% if (typeof admin !== 'undefined' && admin) { %>
+    <aside class="admin-sidebar">
+      <div class="brand">QT · Admin</div>
+      <nav>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/users">Users</a>
+        <a href="/admin/payments">Payments</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/admin/chat">Live Chat</a>
+        <a href="/admin/settings">Settings</a>
+        <a href="/admin/logout">Logout</a>
+      </nav>
+    </aside>
+    <main class="admin-main"><%- body %></main>
+  <% } else { %>
+    <%- body %>
+  <% } %>
+</body>
+</html>

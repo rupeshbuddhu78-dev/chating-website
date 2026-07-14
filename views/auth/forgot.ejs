@@ -1,0 +1,10 @@
+<section class="auth-wrap">
+  <form class="auth-card" method="POST" action="/auth/forgot">
+    <h1>Forgot Password</h1>
+    <% if (error) { %><div class="err"><%= error %></div><% } %>
+    <% if (message) { %><div class="ok"><%= message %></div><% } %>
+    <label>Email <input type="email" name="email" required /></label>
+    <button type="submit" class="btn primary big">Send Reset Link</button>
+    <p class="alt"><a href="/auth/login">Back to login</a></p>
+  </form>
+</section>

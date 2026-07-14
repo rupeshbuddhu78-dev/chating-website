@@ -1,0 +1,28 @@
+<section class="dash">
+  <h1>Profile</h1>
+  <% if (error) { %><div class="err"><%= error %></div><% } %>
+  <% if (message) { %><div class="ok"><%= message %></div><% } %>
+
+  <form method="POST" action="/user/profile" enctype="multipart/form-data" class="card form">
+    <label>Name <input type="text" name="name" value="<%= user.name %>" maxlength="60" /></label>
+    <label>Gender
+      <select name="gender">
+        <% ['','Male','Female','Other'].forEach(g => { %>
+          <option value="<%= g %>" <%= user.gender===g?'selected':'' %>><%= g||'—' %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>Country <input type="text" name="country" value="<%= user.country||'' %>" /></label>
+    <label>Language <input type="text" name="language" value="<%= user.language||'' %>" /></label>
+    <label>Bio <textarea name="bio" maxlength="300"><%= user.bio||'' %></textarea></label>
+    <label>Profile Image <input type="file" name="profileImage" accept="image/*" /></label>
+    <button class="btn primary">Save Profile</button>
+  </form>
+
+  <form method="POST" action="/user/password" class="card form">
+    <h3>Change Password</h3>
+    <label>Current Password <input type="password" name="current" /></label>
+    <label>New Password <input type="password" name="next" minlength="6" required /></label>
+    <button class="btn primary">Update Password</button>
+  </form>
+</section>

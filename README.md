@@ -2,7 +2,7 @@
 
 > **Anonymous Random Text, Voice & HD Video Chat Platform**
 > Production-ready alternative to Omegle, OmeTV & Chatroulette.
-> Live domain: **https://livegirlschat.online**
+> Live domain: **https://chating-website-fz3s.onrender.com**
 
 QuickTalk ek complete anonymous random chat platform hai jisme users ek dusre se text, voice ya HD video pe baat kar sakte hain — bilkul Omegle jaisa, but modern, secure aur premium features ke saath.
 
